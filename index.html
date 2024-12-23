@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Đổi màu hình chữ nhật</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <div class="color-wrapper">
+        <div>
+            <div class="canvas-container">
+
+            </div>
+            <div style="text-align: center;line-height: 1.5">
+                <label for="">Bấm vào nút dưới để kéo&thả những bức tường lỗi:</label><br />
+                <button id="editImage">Bật chỉnh sửa</button>
+                <label id="context-edit">Đang tắt chỉnh sửa</label>
+            </div>
+        </div>
+        <div>
+            <h1>Blend Mode with Canvas</h1>
+            <div class="color-picker">
+                <label for="colorValue">Selected Color:</label>
+                <input type="text" id="colorValue" value="#ff0000" readonly>
+                <div id="box-colors" class="colors">
+                    <div class="color-box" data-color="default" style="background-color: #ffff;"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="/app.js"></script>
+</body>
+
+</html>
