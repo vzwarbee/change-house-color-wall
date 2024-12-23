@@ -29,7 +29,7 @@ anhNha.forEach((name, index) => {
     canvas.style.position = "absolute";
 
     const img = document.createElement("img");
-    img.src = `/sonnha1/${name}.png`;
+    img.src = `/change-house-color-wall/sonnha1/${name}.png`;
     img.id = `wall-image${index}`;
     img.classList.add("wall-image");
 
