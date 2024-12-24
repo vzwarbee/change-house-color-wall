@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 150px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Anton", serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+section {
+    padding: 30px 0;
+}
+
+.color-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.colors {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+
+#colorValue {
+    border-top: none;
+}
+
+.color-box,
+.box-view_selected {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.color-box:hover {
+    transform: scale(1.2);
+}
+
+.canvas-container {
+    position: relative;
+    width: 600px;
+    height: 375px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.canvas-container .canvas-nha {
+    position: absolute;
+}
+
+.canvas-container .canvas-nha img {
+    pointer-events: auto;
+}
+
+.canvas-container .canvas-nha img:hover {
+    filter: brightness(1.1);
+}
+
+.canvas-container .canvas-nha .draw-canvas {
+    mix-blend-mode: multiply;
+}
+
+.canvas-container::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(/change-house-color-wall/assets/images/sonnha1/sonnha.png);
+    background-size: cover;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.color-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 30px 0;
+}
+
+.preview-container::-webkit-scrollbar {
+    background: transparent;
+}
+
+.preview-block {
+    display: inline-block;
+    position: relative;
+}
+
+.delete-button {
+    position: absolute;
+    padding: 0 2px;
+    color: black;
+    cursor: pointer;
+    font-size: 15px;
+    top: 5px;
+    right: 5px;
+    font-weight: 500;
+}
+
+.preview-block .preview-image {
+    max-width: 320px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.delete-button:hover {
+    color: red;
+    border-color: red;
+}
+
+.group-image {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.view-main_image {
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    flex: 4;
+}
+
+.view-wall_list {
+    flex: 8;
+    padding-top: 30px;
+}
+
+.list-image_view {
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
+    width: 50%;
+}
+
+.group-image>div {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    width: 15rem;
+}
+
+
+/* From Uiverse.io by Yaya12085 */
+.form {
+    text-align: center;
+    font-size: 1.125rem;
+    max-width: 320px;
+}
+
+.form-title {
+    color: #000000;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.drop-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px dashed rgb(171, 202, 255);
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-container:hover {
+    background: rgba(0, 140, 255, 0.164);
+    border-color: rgba(17, 17, 17, 0.616);
+}
+
+.drop-container:hover .drop-title {
+    color: #222;
+}
+
+.drop-title {
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+.file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+.file-input::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.file-input::file-selector-button:hover {
+    background: #0d45a5;
+}
+
+.upload-title {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.upload-wrapper {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.form-upload_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+#editImage {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+#editImage:hover {
+    background: #0d45a5;
+}

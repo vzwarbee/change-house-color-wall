@@ -5,36 +5,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas - Đổi màu hình chữ nhật</title>
-    <link rel="stylesheet" href="/change-house-color-wall/style.css">
+    <!--<link rel="stylesheet" href="/change-house-color-wall/assets/style.css">  *** up git -->
+    <link rel="stylesheet" href="/assets/style.css"> <!--*** edit local -->
 
 </head>
 
 <body>
-    <div class="color-wrapper">
-        <div>
-            <div class="canvas-container">
+    <section class="upload-wrapper">
+        <span class="upload-title">
+            <h2>Tải Mẫu Ảnh Mà Bạn Muốn Sơn</h2>
+            <p> <span style="color: red;">Lưu ý:</span> kích thước ảnh bắt buộc rộng: 600 x cao: 375</p>
+        </span>
+        <div class="form-upload_image">
+            <div class="upload-container">
+                <form class="form">
+                    <label for="upload" class="drop-container">
+                        <span class="drop-title">Tải lên ảnh nhà <span style="color: red;">chính</span> *png</span>
+                        <input type="file" id="upload" accept="image/png" class="file-input" />
+                    </label>
+                </form>
+            </div>
+            <div class="gallery-container">
+                <form class="form">
+                    <label for="upload-list" class="drop-container">
+                        <span class="drop-title">Tải lên <span style="color: red;">nhiều</span> ảnh tường *png</span>
+                        <input type="file" id="upload-list" accept="image/png" class="file-input" multiple />
+                    </label>
+                </form>
 
             </div>
-            <div style="text-align: center;line-height: 1.5">
-                <label for="">Bấm vào nút dưới để kéo&thả những bức tường lỗi:</label><br />
-                <button id="editImage">Bật chỉnh sửa</button>
-                <label id="context-edit">Đang tắt chỉnh sửa</label>
+        </div>
+    </section>
+
+    <section class="preview-container">
+        <div class="view-main_image">
+            <h2>Ví Dụ Ảnh Chính</h2>
+            <br />
+            <br />
+            <div class="preview-block">
+                <img src="./assets/images/sonnha1/sonnha.png" alt="" class="preview-image">
+                <button class="delete-button">X</button>
             </div>
         </div>
-        <div>
-            <h1>Blend Mode with Canvas</h1>
-            <div class="color-picker">
-                <label for="colorValue">Selected Color:</label>
-                <input type="text" id="colorValue" value="#ff0000" readonly>
-                <div id="box-colors" class="colors">
-                    <div class="color-box" data-color="default" style="background-color: #ffff;"></div>
+        <div class="view-wall_list">
+            <h2>Ví Dụ Ảnh Tường</h2>
+            <br />
+            <div id="gallery" class="group-image">
+
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 30px;height: 80vh;display: flex;flex-direction: column;justify-content: center;">
+        <h2 style="text-align: center;margin-bottom: 1.5rem;">Sơn Màu Yêu Thích Cho Tường Nhà Bạn</h2>
+        <div class="color-wrapper">
+            <div>
+                <div class="canvas-container">
+                </div>
+                <div style="text-align: center;line-height: 2;margin-top: 1.5rem;">
+                    <p>Bấm vào nút dưới để kéo&thả những bức tường lỗi:</p>
+                    <button id="editImage">Bật chỉnh sửa</button>
+                    <span id="context-edit">Đang tắt chỉnh sửa</span>
                 </div>
             </div>
-
+            <div>
+                <h3>Chọn màu và bấm vào bức tường bạn muốn sơn</h3><br />
+                <div class="color-picker">
+                    <div style="display: flex; gap: 1rem;align-items: end;margin-bottom: 10px;">
+                        <span>Selected Color:</span>
+                        <input type="text" id="colorValue" value="#ff0000" readonly>
+                        <div class="box-view_selected"></div>
+                    </div>
+                    <div id="box-colors" class="colors">
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
-    <script src="/change-house-color-wall/app.js"></script>
+    </section>
+    <!-- <script src="change-house-color-wall/assets/app.js"></script> -->
+    <script src="/change-house-color-wall/assets/js/app.js"></script>
+    <script src="/change-house-color-wall/assets/js/upload_image.js"></script>
 </body>
 
 </html>
