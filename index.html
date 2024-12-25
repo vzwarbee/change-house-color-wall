@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas - Đổi màu hình chữ nhật</title>
     <!--<link rel="stylesheet" href="/change-house-color-wall/assets/style.css">  *** up git -->
-    <link rel="stylesheet" href="/assets/style.css"> <!--*** edit local -->
+    <link rel="stylesheet" href="/change-house-color-wall/assets/style.css"> <!--*** edit local -->
 
 </head>
 
@@ -14,7 +14,8 @@
     <section class="upload-wrapper">
         <span class="upload-title">
             <h2>Tải Mẫu Ảnh Mà Bạn Muốn Sơn</h2>
-            <p> <span style="color: red;">Lưu ý:</span> kích thước ảnh bắt buộc rộng: 600 x cao: 375</p>
+            <p> <span style="color: red;">Lưu ý:</span> kích thước ảnh bắt buộc rộng: 600 x cao: 375 <br /> và tải ảnh
+                theo thứ tự từ to đến nhỏ, để không bị đè lên nhau</p>
         </span>
         <div class="form-upload_image">
             <div class="upload-container">
@@ -40,18 +41,29 @@
     <section class="preview-container">
         <div class="view-main_image">
             <h2>Ví Dụ Ảnh Chính</h2>
-            <br />
-            <br />
             <div class="preview-block">
-                <img src="./assets/images/sonnha1/sonnha.png" alt="" class="preview-image">
+                <img src="./change-house-color-wall/assets/images/sonnha1/sonnha.png" alt="" class="preview-image">
                 <button class="delete-button">X</button>
             </div>
         </div>
         <div class="view-wall_list">
-            <h2>Ví Dụ Ảnh Tường</h2>
-            <br />
+            <span class="delete-all">
+                <h2>Ví Dụ Ảnh Tường</h2>
+            </span>
             <div id="gallery" class="group-image">
-
+                <div style="display: inline-block; position: relative;">
+                    <img class="list-image_view" src="/change-house-color-wall/assets/images/sonnha1/tuong_tran.png">
+                </div>
+                <div style="display: inline-block; position: relative;">
+                    <img class="list-image_view" src="/change-house-color-wall/assets/images/sonnha1/tuong_trai.png">
+                </div>
+                <div style="display: inline-block; position: relative;">
+                    <img class="list-image_view"
+                        src="/change-house-color-wall/assets/images/sonnha1/line_xanh_trai.png">
+                </div>
+                <div style="display: inline-block; position: relative;">
+                    <img class="list-image_view" src="/change-house-color-wall/assets/images/sonnha1/tuong_bep.png">
+                </div>
             </div>
         </div>
     </section>
@@ -60,6 +72,34 @@
         <div class="color-wrapper">
             <div>
                 <div class="canvas-container">
+                    <div class="canvas-nha">
+                        <canvas id="canvas-color4" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;">
+                        </canvas>
+                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_tran.png" id="wall-image4"
+                            class="wall-image">
+                    </div>
+                    <div class="canvas-nha">
+                        <canvas id="canvas-color4" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;">
+                        </canvas>
+                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_trai.png" id="wall-image4"
+                            class="wall-image">
+                    </div>
+                    <div class="canvas-nha">
+                        <canvas id="canvas-color4" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;">
+                        </canvas>
+                        <img src="/change-house-color-wall/assets/images/sonnha1/line_xanh_trai.png" id="wall-image4"
+                            class="wall-image">
+                    </div>
+                    <div class="canvas-nha">
+                        <canvas id="canvas-color4" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;">
+                        </canvas>
+                        <img src="/change-house-color-wall/assets/images/sonnha1/bep.png" id="wall-image4"
+                            class="wall-image">
+                    </div>
                 </div>
                 <div style="text-align: center;line-height: 2;margin-top: 1.5rem;">
                     <p>Bấm vào nút dưới để kéo&thả những bức tường lỗi:</p>
@@ -81,7 +121,51 @@
             </div>
         </div>
     </section>
-    <!-- <script src="change-house-color-wall/assets/app.js"></script> -->
+
+    <section class="doc-wrapper">
+        <div style="line-height: 2;text-align: center;">
+            <h2>Để căn nhà sơn được chân thật nhất hãy đọc hướng dẫn sau</h2>
+            <p>Để sơn được tường bạn mong muốn trước tiên bạn phải edit <a href="#photoshop">bấm vào đây</a> trước khi
+                bấm vào
+                đọc hướng dẫn chỉnh sửa ảnh như sau.</p>
+            <p>Vào giao diện chọn <strong>open from computer</strong> và chọn ảnh muốn sơn</p>
+            <p>sau đó chọn image trên thanh công cụ > canvas size </p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.44.56 AM.png"
+                style="max-width: 200px;" alt="">
+            <p>chọn size 600 x 375</p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.45.01 AM.png"
+                style="max-width: 200px;" alt="">
+            <p>bấm vào layer ảnh nhấn tổ hợp phím control + t để kéo ảnh cho vừa với khung</p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.45.17 AM.png"
+                style="max-width: 200px;" alt="">
+            <br />
+            <p>Hãy bấm chuột phải trên thanh công cụ bên trái chọn polygonal lasso selected</p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.34.27 AM.png"
+                style="max-width: 400px;" alt="">
+            <p>Click chuột trái để tạo vùng selected ,sau khi tạo vùng nhấn tổ hợp control + j để copy mới vùng chọn</p>
+            <img src="/assets/images/how_to/Screenshot 2024-12-25 at 9.36.16 AM.png" style="max-width: 400px;" alt="">
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.36.36 AM.png"
+                style="max-width: 500px;" alt="">
+            <p>Sau khi cắt bạn sẽ có những layer như sau</p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.37.03 AM.png"
+                style="max-width: 600px;" alt="">
+            <p>Bạn chọn từng bức tường và ẩn những bức tường khác, chọn crop tool để cắt</p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.38.22 AM.png"
+                style="max-width: 300px;" alt="">
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.38.47 AM.png"
+                style="max-width: 400px;" alt="">
+            <p>Sau khi cắt bấm file trên thanh công cụ > exports as > png và tải về </p>
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 10.27.09 AM.png"
+                style="max-width: 400px;" alt="">
+            <br />
+            <br />
+            <p>-----> Chúc bạn thành công <a href="#">Bấm vào để đi lên</a></p>
+        </div>
+    </section>
+    <section id="photoshop" style="height: 100vh;">
+        <iframe src="https://www.photopea.com/" frameborder="0" style="width: 100%;height: 100%;"></iframe>
+    </section>
+    <!-- <script src="/change-house-color-wall/assets/app.js"></script> -->
     <script src="/change-house-color-wall/assets/js/app.js"></script>
     <script src="/change-house-color-wall/assets/js/upload_image.js"></script>
 </body>

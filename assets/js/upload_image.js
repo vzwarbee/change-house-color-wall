@@ -8,20 +8,19 @@ input.addEventListener('change', (event) => {
     const reader = new FileReader();
 
     reader.onload = () => {
-        const uploadContainer = document.querySelector(".upload-container")
+        const uploadContainer = document.querySelector(".view-main_image")
+        uploadContainer.querySelector(".preview-block").remove();
         const base64Image = reader.result;
 
         sessionStorage.setItem('uploadedImage', base64Image);
         preview.className = 'preview-image';
         preview.src = base64Image;
-        preview.style.width = "160px";
-        preview.style.height = "100px";
 
         const divPreview = document.createElement("div");
         divPreview.className = "preview-block";
 
         const deleteButton = document.createElement('button');
-        deleteButton.className = "delete-botton";
+        deleteButton.className = "delete-button";
         deleteButton.textContent = 'X';
         deleteButton.onclick = () => {
             sessionStorage.removeItem("uploadedImage");
@@ -87,7 +86,6 @@ function saveImagesToSession(images) {
     sessionStorage.setItem('listImages', JSON.stringify(images));
 }
 
-// Hàm lấy danh sách ảnh từ sessionStorage
 function getImagesFromSession() {
     const savedImages = sessionStorage.getItem('listImages');
     return savedImages ? JSON.parse(savedImages) : [];
@@ -95,6 +93,7 @@ function getImagesFromSession() {
 
 // Hàm hiển thị gallery
 function renderGallery() {
+    canvas_container.innerHTML = ''
     gallery.innerHTML = ''; // Xóa nội dung cũ
     const images = getImagesFromSession();
 
@@ -153,21 +152,26 @@ function deleteImage(index) {
     saveImagesToSession(images);
     renderGallery();
 }
-
+document.querySelector(".delete-all").addEventListener('click', () => {
+    const savedImages = sessionStorage.getItem('listImages');
+    if (savedImages) sessionStorage.removeItem('listImages');
+    gallery.innerHTML = ''
+    canvas_container.innerHTML = ''
+})
 
 input_list.addEventListener('change', (event) => {
-    const files = Array.from(event.target.files); // Lấy danh sách file
-    const images = getImagesFromSession(); // Lấy danh sách ảnh hiện tại
+    const files = Array.from(event.target.files);
+    const images = getImagesFromSession();
 
     files.forEach((file) => {
         const reader = new FileReader();
         reader.onload = () => {
-            images.push(reader.result); // Thêm ảnh mới vào danh sách
-            saveImagesToSession(images); // Lưu danh sách vào sessionStorage
-            renderGallery(); // Cập nhật giao diện
+            images.push(reader.result);
+            saveImagesToSession(images);
+            renderGallery();
         };
 
-        reader.readAsDataURL(file); // Đọc file dưới dạng Base64
+        reader.readAsDataURL(file);
     });
 });
 
@@ -201,5 +205,3 @@ function hexToRgb(hex) {
     }
     return { r, g, b };
 }
-
-renderGallery();
