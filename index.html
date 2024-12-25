@@ -67,43 +67,43 @@
             </div>
         </div>
     </section>
-    <section style="margin-top: 30px;height: 80vh;display: flex;flex-direction: column;justify-content: center;">
+    <section style="margin-top: 30px;padding: 60px 0;display: flex;flex-direction: column;justify-content: center;">
         <h2 style="text-align: center;margin-bottom: 1.5rem;">Sơn Màu Yêu Thích Cho Tường Nhà Bạn</h2>
         <div class="color-wrapper">
             <div>
                 <div class="canvas-container">
                     <div class="canvas-nha">
-                        <canvas id="canvas-color4" class="draw-canvas"
+                        <canvas id="canvas-color0" class="draw-canvas"
                             style="width: auto; height: auto; position: absolute;">
                         </canvas>
-                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_tran.png" id="wall-image4"
+                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_tran.png" id="wall-image0"
                             class="wall-image">
                     </div>
                     <div class="canvas-nha">
-                        <canvas id="canvas-color4" class="draw-canvas"
+                        <canvas id="canvas-color1" class="draw-canvas"
                             style="width: auto; height: auto; position: absolute;">
                         </canvas>
-                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_trai.png" id="wall-image4"
+                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_trai.png" id="wall-image1"
                             class="wall-image">
                     </div>
-                    <div class="canvas-nha">
-                        <canvas id="canvas-color4" class="draw-canvas"
-                            style="width: auto; height: auto; position: absolute;">
+                    <div class="canvas-nha" style="cursor: grab; left: 0px; top: 219.75px;">
+                        <canvas id="canvas-color2" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;" width="152" height="155">
                         </canvas>
-                        <img src="/change-house-color-wall/assets/images/sonnha1/line_xanh_trai.png" id="wall-image4"
+                        <img src="/change-house-color-wall/assets/images/sonnha1/line_xanh_trai.png" id="wall-image2"
                             class="wall-image">
                     </div>
-                    <div class="canvas-nha">
-                        <canvas id="canvas-color4" class="draw-canvas"
-                            style="width: auto; height: auto; position: absolute;">
+                    <div class="canvas-nha" style="cursor: grab; left: 294px; top: 89.75px;">
+                        <canvas id="canvas-color3" class="draw-canvas"
+                            style="width: auto; height: auto; position: absolute;" width="306" height="171">
                         </canvas>
-                        <img src="/change-house-color-wall/assets/images/sonnha1/bep.png" id="wall-image4"
+                        <img src="/change-house-color-wall/assets/images/sonnha1/tuong_bep.png" id="wall-image3"
                             class="wall-image">
                     </div>
                 </div>
                 <div style="text-align: center;line-height: 2;margin-top: 1.5rem;">
                     <p>Bấm vào nút dưới để kéo&thả những bức tường lỗi:</p>
-                    <button id="editImage">Bật chỉnh sửa</button>
+                    <button id="editImage" class="button">Bật chỉnh sửa</button>
                     <span id="context-edit">Đang tắt chỉnh sửa</span>
                 </div>
             </div>
@@ -143,7 +143,8 @@
             <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.34.27 AM.png"
                 style="max-width: 400px;" alt="">
             <p>Click chuột trái để tạo vùng selected ,sau khi tạo vùng nhấn tổ hợp control + j để copy mới vùng chọn</p>
-            <img src="/assets/images/how_to/Screenshot 2024-12-25 at 9.36.16 AM.png" style="max-width: 400px;" alt="">
+            <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.36.16 AM.png"
+                style="max-width: 400px;" alt="">
             <img src="/change-house-color-wall/assets/images/how_to/Screenshot 2024-12-25 at 9.36.36 AM.png"
                 style="max-width: 500px;" alt="">
             <p>Sau khi cắt bạn sẽ có những layer như sau</p>
@@ -162,12 +163,34 @@
             <p>-----> Chúc bạn thành công <a href="#">Bấm vào để đi lên</a></p>
         </div>
     </section>
-    <section id="photoshop" style="height: 100vh;">
+    <div style="text-align: center;">
+        <button id="openPhotoshopButton" style="margin: 20px auto; text-align: center;" onclick="openPhotoshop()"
+            class="button">Mở Trình
+            Chỉnh Sửa Ảnh</button>
+    </div>
+    <section id="photoshop" style="height: 100vh;text-align: center; display: none;">
         <iframe src="https://www.photopea.com/" frameborder="0" style="width: 100%;height: 100%;"></iframe>
     </section>
     <!-- <script src="/change-house-color-wall/assets/app.js"></script> -->
     <script src="/change-house-color-wall/assets/js/app.js"></script>
     <script src="/change-house-color-wall/assets/js/upload_image.js"></script>
+    <script>
+        const openPhotoshop = () => {
+            const photoshop = document.getElementById('photoshop');
+            document.getElementById('openPhotoshopButton');
+            const computedStyle = window.getComputedStyle(photoshop);
+            if (computedStyle.display === 'none') {
+                photoshop.style.display = 'block';
+                document.getElementById('openPhotoshopButton').innerText = "Đóng Trình Chỉnh Sửa Ảnh";
+                document.getElementById('openPhotoshopButton').style.backgroundColor = "#dc3545";
+                window.location.hash = "#photoshop";
+            } else {
+                photoshop.style.display = 'none';
+                document.getElementById('openPhotoshopButton').innerText = "Mở Trình Chỉnh Sửa Ảnh";
+                document.getElementById('openPhotoshopButton').style.backgroundColor = "#0d6efd";
+            }
+        }
+    </script>
 </body>
 
 </html>

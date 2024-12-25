@@ -1,6 +1,7 @@
 const input = document.getElementById('upload');
 const box_colors = document.getElementById('box-colors');
 const colorInput = document.getElementById('colorValue');
+const canvas_container = document.querySelector(".canvas-container");
 
 const preview = document.createElement('img');
 input.addEventListener('change', (event) => {
@@ -15,6 +16,7 @@ input.addEventListener('change', (event) => {
         sessionStorage.setItem('uploadedImage', base64Image);
         preview.className = 'preview-image';
         preview.src = base64Image;
+        canvas_container.src = base64Image;
 
         const divPreview = document.createElement("div");
         divPreview.className = "preview-block";
@@ -79,7 +81,6 @@ fetchData().then(() => {
 
 const input_list = document.getElementById('upload-list');
 const gallery = document.getElementById('gallery');
-const canvas_container = document.querySelector(".canvas-container");
 
 // Hàm lưu danh sách ảnh vào sessionStorage
 function saveImagesToSession(images) {
@@ -155,8 +156,8 @@ function deleteImage(index) {
 document.querySelector(".delete-all").addEventListener('click', () => {
     const savedImages = sessionStorage.getItem('listImages');
     if (savedImages) sessionStorage.removeItem('listImages');
-    gallery.innerHTML = ''
-    canvas_container.innerHTML = ''
+    gallery.innerHTML = '';
+    canvas_container.innerHTML = '';
 })
 
 input_list.addEventListener('change', (event) => {
@@ -205,3 +206,30 @@ function hexToRgb(hex) {
     }
     return { r, g, b };
 }
+
+const parentCanvas = document.querySelectorAll(".canvas-nha");
+parentCanvas.forEach((itemDiv, index) => {
+    const listImage = sessionStorage.getItem('listImages');
+    if (listImage == null | listImage == []) {
+        console.log("123");
+        itemDiv.addEventListener("click", () => {
+            const canvas = document.getElementById(`canvas-color${index}`);
+            const img = document.getElementById(`wall-image${index}`);
+
+            if (canvas && img) {
+                applyColorToCanvas(canvas, img, colorInput.value);
+            } else {
+                console.error("Canvas hoặc Img không tồn tại với index:", index);
+            }
+        });
+    }
+});
+
+function checkStorage() {
+    const listImage = sessionStorage.getItem('listImages');
+    if (listImage) {
+        renderGallery()
+    }
+}
+
+checkStorage();

@@ -10,7 +10,7 @@ const buttonEdit = document.getElementById("editImage");
 buttonEdit.addEventListener('click', () => {
     triggerActive = !triggerActive;
     buttonEdit.innerText = triggerActive ? "Đang bật" : "Đang tắt";
-    buttonEdit.style.backgroundColor = triggerActive ? "#198754" : "#0d6efd"
+    buttonEdit.style.backgroundColor = triggerActive ? "#198754" : "#dc3545"
     document.getElementById("context-edit").innerText = triggerActive ? "Đang bật chỉnh sửa" : "Đang tắt chỉnh sửa";
     if (triggerActive == false && activeElement) {
         activeElement.style.cursor = 'default';
@@ -40,7 +40,6 @@ function canvasMouseMove(e) {
     if (activeElement) {
         const newX = e.clientX - containerRect.left - offsetX;
         const newY = e.clientY - containerRect.top - offsetY;
-        console.log(newY, newX);
         activeElement.style.left = `${newX}px`;
         activeElement.style.top = `${newY}px`;
     }
