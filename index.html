@@ -111,7 +111,7 @@
                 <h3>Chọn màu và bấm vào bức tường bạn muốn sơn</h3><br />
                 <div class="color-picker">
                     <div style="display: flex; gap: 1rem;align-items: end;margin-bottom: 10px;">
-                        <span>Selected Color:</span>
+                        <span>Màu hiện tại:</span>
                         <input type="text" id="colorValue" value="#ff0000" readonly>
                         <div class="box-view_selected"></div>
                     </div>
@@ -177,7 +177,6 @@
     <script>
         const openPhotoshop = () => {
             const photoshop = document.getElementById('photoshop');
-            document.getElementById('openPhotoshopButton');
             const computedStyle = window.getComputedStyle(photoshop);
             if (computedStyle.display === 'none') {
                 photoshop.style.display = 'block';

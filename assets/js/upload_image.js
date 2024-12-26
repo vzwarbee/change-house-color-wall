@@ -3,7 +3,6 @@ const box_colors = document.getElementById('box-colors');
 const colorInput = document.getElementById('colorValue');
 const canvas_container = document.querySelector(".canvas-container");
 
-const preview = document.createElement('img');
 input.addEventListener('change', (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -12,11 +11,14 @@ input.addEventListener('change', (event) => {
         const uploadContainer = document.querySelector(".view-main_image")
         uploadContainer.querySelector(".preview-block").remove();
         const base64Image = reader.result;
-
         sessionStorage.setItem('uploadedImage', base64Image);
+
+        const getImagesFromSession = sessionStorage.getItem('uploadedImage');
+
+        const preview = document.createElement('img');
         preview.className = 'preview-image';
-        preview.src = base64Image;
-        canvas_container.src = base64Image;
+        preview.src = getImagesFromSession;
+        canvas_container.setAttribute("style", `background-image: url(${getImagesFromSession});`);
 
         const divPreview = document.createElement("div");
         divPreview.className = "preview-block";
@@ -25,8 +27,7 @@ input.addEventListener('change', (event) => {
         deleteButton.className = "delete-button";
         deleteButton.textContent = 'X';
         deleteButton.onclick = () => {
-            sessionStorage.removeItem("uploadedImage");
-            divPreview.remove();
+            removeMainImage(divPreview);
         };
 
         divPreview.appendChild(preview);
@@ -39,12 +40,14 @@ input.addEventListener('change', (event) => {
         reader.readAsDataURL(file);
     }
 })
+function removeMainImage(divPreview) {
+    const getImagesFromSession = sessionStorage.getItem('uploadedImage');
+    if (getImagesFromSession) {
+        sessionStorage.setItem("uploadedImage", '');
+        divPreview.innerHTML = "";
+    }
 
-const savedImage = sessionStorage.getItem('uploadedImage');
-if (savedImage) {
-    preview.src = savedImage;
 }
-
 let listData = {};
 async function fetchData() {
     try {
@@ -211,7 +214,6 @@ const parentCanvas = document.querySelectorAll(".canvas-nha");
 parentCanvas.forEach((itemDiv, index) => {
     const listImage = sessionStorage.getItem('listImages');
     if (listImage == null | listImage == []) {
-        console.log("123");
         itemDiv.addEventListener("click", () => {
             const canvas = document.getElementById(`canvas-color${index}`);
             const img = document.getElementById(`wall-image${index}`);

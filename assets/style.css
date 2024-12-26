@@ -11,6 +11,9 @@
     --bs-dark: #212529;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
 
 * {
     margin: 0;
@@ -52,6 +55,7 @@ h5 {
     font-family: "Anton", serif;
     font-weight: 600;
     font-style: normal;
+    letter-spacing: 1.5px;
 }
 
 section {
@@ -95,6 +99,10 @@ section {
     border: 1px solid #ccc;
     border-radius: 3px;
     transition: transform 0.2s;
+}
+
+.box-view_selected {
+    background-color: #ff0000;
 }
 
 .color-box:hover {
