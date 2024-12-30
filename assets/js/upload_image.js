@@ -1,53 +1,9 @@
-const input = document.getElementById('upload');
 const box_colors = document.getElementById('box-colors');
 const colorInput = document.getElementById('colorValue');
 const canvas_container = document.querySelector(".canvas-container");
 
-input.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-        const uploadContainer = document.querySelector(".view-main_image")
-        uploadContainer.querySelector(".preview-block").remove();
-        const base64Image = reader.result;
-        sessionStorage.setItem('uploadedImage', base64Image);
 
-        const getImagesFromSession = sessionStorage.getItem('uploadedImage');
-
-        const preview = document.createElement('img');
-        preview.className = 'preview-image';
-        preview.src = getImagesFromSession;
-        canvas_container.setAttribute("style", `background-image: url(${getImagesFromSession});`);
-
-        const divPreview = document.createElement("div");
-        divPreview.className = "preview-block";
-
-        const deleteButton = document.createElement('button');
-        deleteButton.className = "delete-button";
-        deleteButton.textContent = 'X';
-        deleteButton.onclick = () => {
-            removeMainImage(divPreview);
-        };
-
-        divPreview.appendChild(preview);
-        divPreview.appendChild(deleteButton);
-
-        uploadContainer.appendChild(divPreview);
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-})
-function removeMainImage(divPreview) {
-    const getImagesFromSession = sessionStorage.getItem('uploadedImage');
-    if (getImagesFromSession) {
-        sessionStorage.setItem("uploadedImage", '');
-        divPreview.innerHTML = "";
-    }
-
-}
 let listData = {};
 async function fetchData() {
     try {
@@ -61,52 +17,172 @@ async function fetchData() {
     }
 }
 
-
 fetchData().then(() => {
     listData?.colors.forEach((color) => {
+        const boxView = document.querySelector(".box-view_selected")
         const colorBox = document.createElement("div");
-        const boxView = document.querySelector(".box-view_selected");
         colorBox.className = "color-box";
         colorBox.style.backgroundColor = color;
         colorBox.setAttribute("data-color", color);
         colorBox.addEventListener('click', () => {
             const color = colorBox.getAttribute('data-color');
             colorInput.value = color;
+            boxView.style.backgroundColor = color;
             colorInput.style.borderColor = color;
-            boxView.style.backgroundColor = color
         });
 
         box_colors.appendChild(colorBox);
     });
 })
 
-//=====
+//data image
+const sonnha = {
+    sonnha1: [
+        {
+            url: "/change-house-color-wall/assets/images/sonnha1/sonnha.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha1/tuong_tran.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha1/tuong_trai.png",
+            top: '40px',
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha1/tuong_bep.png",
+            left: '226px',
+            top: ' 94.75px'
+        }
+    ],
+    sonnha2: [
+        {
+            url: "/change-house-color-wall/assets/images/sonnha2/sonnha.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha2/sonnha1.png",
+            top: 0,
+            left: '395px'
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha2/sonnha2.png",
+            top: '0',
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha2/sonnha3.png",
+            top: '0',
+            left: '0'
+        }
+    ],
+    sonnha3: [
+        {
+            url: "/change-house-color-wall/assets/images/sonnha3/sonnha.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha3/sonnha1.png",
+            top: '91px',
+            left: '0'
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha3/sonnha2.png",
+            top: '0',
+            left: '0'
+        },
+    ],
+    sonnha4: [
+        {
+            url: "/change-house-color-wall/assets/images/sonnha4/sonnha.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha4/sonnha1.png",
+            top: '0',
+            left: '212px'
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha4/sonnha2.png",
+            top: '0',
+            left: '0'
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha4/sonnha3.png",
+            top: '0',
+            left: '0'
+        },
+    ],
+    sonnha5: [
+        {
+            url: "/change-house-color-wall/assets/images/sonnha5/sonnha.png",
+            top: 0,
+            left: 0
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha5/sonnha1.png",
+            top: '25px',
+            left: '142px'
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha5/sonnha2.png",
+            top: '69px',
+            left: '171px'
 
-const input_list = document.getElementById('upload-list');
-const gallery = document.getElementById('gallery');
+        },
+        {
+            url: "/change-house-color-wall/assets/images/sonnha5/sonnha3.png",
+            top: '122px',
+            left: '190px'
+        },
+    ],
+};
 
-// Hàm lưu danh sách ảnh vào sessionStorage
-function saveImagesToSession(images) {
-    sessionStorage.setItem('listImages', JSON.stringify(images));
-}
+// slide change image
+const navbarActive = document.querySelectorAll(".nav-bar .list-navbar .item-navbar");
+const listFeature = document.querySelectorAll(".item-feature");
+listFeature.forEach((itemFeature, index) => {
+    itemFeature.addEventListener("click", () => {
+        navbarActive.forEach(navItem => {
+            navItem.classList.remove("active");
+        });
 
-function getImagesFromSession() {
-    const savedImages = sessionStorage.getItem('listImages');
-    return savedImages ? JSON.parse(savedImages) : [];
-}
+        navbarActive[index].classList.add("active");
+        const groupName = itemFeature.getAttribute("data-group");
 
-// Hàm hiển thị gallery
-function renderGallery() {
-    canvas_container.innerHTML = ''
-    gallery.innerHTML = ''; // Xóa nội dung cũ
-    const images = getImagesFromSession();
+        if (sonnha[groupName]) {
+            innerContentContainer(sonnha[groupName]);
+        } else {
+            alert("Có gì đó đang lỗi, chúng tôi đang sửa chửa. Mong bạn thông cảm!");
+        }
+    });
+});
 
-    const fragment = document.createDocumentFragment();
-    images.forEach((image, index) => {
+function innerContentContainer(grouphouse) {
+    canvasContainer.innerHTML = "";
+    let data = Array.isArray(grouphouse) ? grouphouse : Object.values(grouphouse);
+
+    if (!data || data.length === 0) {
+        console.error("Dữ liệu không hợp lệ hoặc rỗng.");
+        return;
+    }
+
+    canvasContainer.style.backgroundImage = `url(${data[0]?.url || ""})`;
+    const result = data.slice(1);
+
+    result.forEach((item, index) => {
         const houseDiv = document.createElement("div");
         houseDiv.classList.add("canvas-nha");
+        houseDiv.style.top = item.top;
+        houseDiv.style.left = item.left;
 
-        //----->>>> canvas
         const canvas = document.createElement("canvas");
         canvas.id = `canvas-color${index}`;
         canvas.classList.add("draw-canvas");
@@ -115,69 +191,20 @@ function renderGallery() {
         canvas.style.position = "absolute";
 
         const imgCanvas = document.createElement("img");
-        imgCanvas.src = image;
+        imgCanvas.src = item.url;
         imgCanvas.id = `wall-image${index}`;
         imgCanvas.classList.add("wall-image");
-
-        //------->>> img view
-        const divListImage = document.createElement('div');
-        divListImage.style.display = 'inline-block';
-        divListImage.style.position = 'relative';
-
-        const imgView = document.createElement('img');
-        imgView.className = "list-image_view";
-        imgView.src = image;
-
-        const deleteButton = document.createElement('button');
-        deleteButton.className = "delete-button"
-        deleteButton.textContent = 'X';
-        deleteButton.onclick = () => {
-            deleteImage(index);
-        };
-        divListImage.appendChild(imgView);
-        divListImage.appendChild(deleteButton);
-        gallery.appendChild(divListImage);
 
         houseDiv.appendChild(canvas);
         houseDiv.appendChild(imgCanvas);
         houseDiv.addEventListener("click", function () {
 
-            applyColorToCanvas(canvas, imgCanvas, colorInput.value); // Gọi method với các phần tử cần thiết
+            applyColorToCanvas(canvas, imgCanvas, colorInput.value)
         });
-        fragment.appendChild(houseDiv);
-    });
-    canvas_container.appendChild(fragment);
+        canvas_container.appendChild(houseDiv);
+    })
+
 }
-
-// Hàm xóa ảnh theo chỉ số
-function deleteImage(index) {
-    const images = getImagesFromSession();
-    images.splice(index, 1);
-    saveImagesToSession(images);
-    renderGallery();
-}
-document.querySelector(".delete-all").addEventListener('click', () => {
-    const savedImages = sessionStorage.getItem('listImages');
-    if (savedImages) sessionStorage.removeItem('listImages');
-    gallery.innerHTML = '';
-    canvas_container.innerHTML = '';
-})
-
-input_list.addEventListener('change', (event) => {
-    const files = Array.from(event.target.files);
-    const images = getImagesFromSession();
-
-    files.forEach((file) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            images.push(reader.result);
-            saveImagesToSession(images);
-            renderGallery();
-        };
-
-        reader.readAsDataURL(file);
-    });
-});
 
 function applyColorToCanvas(canvas, img, hexColor) {
     const ctx = canvas.getContext("2d");
