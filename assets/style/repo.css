@@ -1,0 +1,11 @@
+@media screen and (max-width: 992px) {
+
+    .header-nav_bar,
+    .background-pain {
+        display: none;
+    }
+
+    .thumbnail-image {
+        margin-top: 2rem;
+    }
+}

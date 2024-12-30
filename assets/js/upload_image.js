@@ -165,6 +165,25 @@ listFeature.forEach((itemFeature, index) => {
     });
 });
 
+navbarActive.forEach((navItem, index) => {
+    navItem.addEventListener("click", () => {
+        navbarActive.forEach(nav => nav.classList.remove("active"));
+
+        navItem.classList.add("active");
+
+        const relatedFeature = listFeature[index];
+        if (relatedFeature) {
+            const groupName = relatedFeature.getAttribute("data-group");
+
+            if (sonnha[groupName]) {
+                innerContentContainer(sonnha[groupName]);
+            } else {
+                alert("Có gì đó đang lỗi, chúng tôi đang sửa chữa. Mong bạn thông cảm!");
+            }
+        }
+    });
+});
+
 function innerContentContainer(grouphouse) {
     canvasContainer.innerHTML = "";
     let data = Array.isArray(grouphouse) ? grouphouse : Object.values(grouphouse);
