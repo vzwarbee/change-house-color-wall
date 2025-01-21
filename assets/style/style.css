@@ -110,10 +110,6 @@ section {
     transition: transform 0.2s;
 }
 
-.box-view_selected {
-    background-color: #FACEE0;
-}
-
 .color-box:hover {
     transform: scale(1.2);
 }

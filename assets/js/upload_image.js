@@ -25,9 +25,11 @@ fetchData().then(() => {
     colorBox.setAttribute("data-color", color);
     colorBox.addEventListener("click", () => {
       const color = colorBox.getAttribute("data-color");
-      const titleLabelColor = "TNX" + color.name;
+      const titleLabelColor = !colorInput ? "TNX2001P" : "TNX" + color.name;
       labelColor.innerHTML = titleLabelColor.toUpperCase();
-      boxView.style.backgroundColor = `rgb(${color.color}})`;
+      boxView.style.backgroundColor = !colorInput
+        ? "rgb(245,238,206)"
+        : `rgb(${color.color}})`;
     });
 
     box_colors.appendChild(colorBox);
