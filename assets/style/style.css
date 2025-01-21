@@ -93,6 +93,11 @@ section {
 
 #colorValue {
     border-top: none;
+    display: none;
+}
+
+#labelColor {
+    font-weight: 600;
 }
 
 .color-box,
