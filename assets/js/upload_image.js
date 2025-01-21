@@ -22,7 +22,7 @@ fetchData().then(() => {
     const colorBox = document.createElement("div");
     colorBox.className = "color-box";
     colorBox.style.backgroundColor = `rgb(${color.color}})`;
-    colorBox.setAttribute("data-color", color);
+    colorBox.setAttribute("data-color", `rgb(${color.color}})`);
     colorBox.addEventListener("click", () => {
       const color = colorBox.getAttribute("data-color");
       const titleLabelColor = !colorInput ? "TNX2001P" : "TNX" + color.name;
