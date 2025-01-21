@@ -21,14 +21,13 @@ fetchData().then(() => {
     const boxView = document.querySelector(".box-view_selected");
     const colorBox = document.createElement("div");
     colorBox.className = "color-box";
-    colorBox.style.backgroundColor = color;
+    colorBox.style.backgroundColor = `rgb(${color.color}})`;
     colorBox.setAttribute("data-color", color);
     colorBox.addEventListener("click", () => {
       const color = colorBox.getAttribute("data-color");
-      const titleLabelColor = "TNX" + color;
+      const titleLabelColor = "TNX" + color.name;
       labelColor.innerHTML = titleLabelColor.toUpperCase();
-      boxView.style.backgroundColor = color;
-      colorInput.style.borderColor = color;
+      boxView.style.backgroundColor = `rgb(${color.color}})`;
     });
 
     box_colors.appendChild(colorBox);
@@ -236,12 +235,12 @@ function applyColorToCanvas(canvas, img, hexColor) {
   const imageData = ctx.getImageData(0, 0, img.width, img.height);
   const data = imageData.data;
 
-  const rgb = hexToRgb(hexColor);
+  // const rgb = hexToRgb(hexColor);
 
   for (let i = 0; i < data.length; i += 4) {
-    data[i] = rgb.r; // Red
-    data[i + 1] = rgb.g; // Green
-    data[i + 2] = rgb.b; // Blue
+    data[i] = hexColor.r; // Red
+    data[i + 1] = hexColor.g; // Green
+    data[i + 2] = hexColor.b; // Blue
   }
 
   ctx.putImageData(imageData, 0, 0);
