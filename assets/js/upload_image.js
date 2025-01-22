@@ -15,26 +15,48 @@ async function fetchData() {
     console.error("There was a problem with the fetch operation:", error);
   }
 }
+const boxView = document.querySelector(".box-view_selected");
 
 fetchData().then(() => {
-  listData?.colors.forEach((color) => {
-    const boxView = document.querySelector(".box-view_selected");
+  if (!listData || !listData?.colors) {
+    console.error("Dữ liệu không hợp lệ hoặc bị thiếu!");
+    return;
+  }
+  function handleColorBoxClick(event) {
+    const colorBox = event.currentTarget;
+    const artColor = colorBox.getAttribute("data-color");
+    const titleLabelColor = "TNX" + colorBox.getAttribute("data-name");
+
+    labelColor.value = titleLabelColor.toUpperCase();
+    labelColor.style.borderColor = artColor;
+    colorInput.value = artColor;
+    boxView.style.backgroundColor = artColor;
+
+    boxView.addEventListener("click", () => {
+      location.hash = titleLabelColor;
+    });
+
+    document
+      .querySelectorAll(".color-box")
+      .forEach((box) => box.classList.remove("active"));
+
+    colorBox.classList.add("active");
+  }
+  listData.colors.forEach(({ name, color }) => {
     const colorBox = document.createElement("div");
     colorBox.className = "color-box";
-    colorBox.style.backgroundColor = `rgb(${color.color}})`;
-    colorBox.setAttribute("data-color", `rgb(${color.color}})`);
-    colorBox.addEventListener("click", () => {
-      const color = colorBox.getAttribute("data-color");
-      const titleLabelColor = !colorInput ? "TNX2001P" : "TNX" + color.name;
-      labelColor.innerHTML = titleLabelColor.toUpperCase();
-      boxView.style.backgroundColor = !colorInput
-        ? "rgb(245,238,206)"
-        : `rgb(${color.color}})`;
-    });
+    colorBox.style.backgroundColor = `rgb(${color})`;
+    colorBox.setAttribute("data-color", `rgb(${color})`);
+    colorBox.setAttribute("data-name", name);
+    colorBox.id = "TNX" + name;
+
+    colorBox.addEventListener("click", handleColorBoxClick);
 
     box_colors.appendChild(colorBox);
   });
 });
+
+function linkToColor() {}
 
 //data image
 const sonnha = {
@@ -237,12 +259,15 @@ function applyColorToCanvas(canvas, img, hexColor) {
   const imageData = ctx.getImageData(0, 0, img.width, img.height);
   const data = imageData.data;
 
-  // const rgb = hexToRgb(hexColor);
+  const { r, g, b } = (() => {
+    const [r, g, b] = hexColor.match(/\d+/g).map(Number);
+    return { r, g, b };
+  })();
 
   for (let i = 0; i < data.length; i += 4) {
-    data[i] = hexColor.r; // Red
-    data[i + 1] = hexColor.g; // Green
-    data[i + 2] = hexColor.b; // Blue
+    data[i] = r; // Red
+    data[i + 1] = g; // Green
+    data[i + 2] = b; // Blue
   }
 
   ctx.putImageData(imageData, 0, 0);

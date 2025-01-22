@@ -96,8 +96,8 @@ section {
 }
 
 #labelColor {
-    font-weight: 600;
     margin-bottom: 0;
+    border-top: none;
 }
 
 .color-box,
@@ -108,10 +108,49 @@ section {
     border: 1px solid #ccc;
     border-radius: 3px;
     transition: transform 0.2s;
+    background-color: rgb(245, 238, 206);
 }
 
 .color-box:hover {
     transform: scale(1.2);
+}
+
+.color-box.active {
+    transform: scale(1.2);
+    border: 2px solid #ccc;
+}
+
+.box-view_selected {
+    position: relative;
+}
+
+.box-view_selected::after {
+    position: absolute;
+    content: "Tới màu này";
+    font-size: 15px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 0%;
+    right: 0;
+    height: 0%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    text-align: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+}
+
+.box-view_selected:hover::after {
+    top: 0%;
+    height: 100%;
+    visibility: visible;
+    opacity: 1;
 }
 
 .canvas-container {
