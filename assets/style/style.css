@@ -128,6 +128,9 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 100%;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
 .box-view_selected {
@@ -139,21 +142,19 @@ section {
     content: "Nataxa_2001P";
     font-size: 13px;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 0;
     left: 0%;
     height: 50%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     letter-spacing: 1px;
-    text-align: center;
-    align-items: center;
     visibility: visible;
     opacity: 1;
     transition: .3s;
     font-weight: bold;
+    overflow-wrap: break-word;
+    text-align: center;
+    text-shadow: 0 0 1px #000;
 }
 
 .canvas-container {
@@ -543,4 +544,5 @@ section {
     height: 30%;
     color: black;
     background-color: white;
+    font-size: 14px;
 }
