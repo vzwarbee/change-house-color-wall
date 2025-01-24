@@ -52,10 +52,10 @@ function createColorBox(name, color) {
   colorBox.style.backgroundColor = `rgb(${color})`;
   colorBox.setAttribute("data-color", `rgb(${color})`);
   colorBox.setAttribute("data-name", name);
-  colorBox.id = `TNX${name}`;
+  colorBox.id = `${name}`;
   tooltip.className = "tooltipColor";
   tooltip.style.backgroundColor = `rgb(${color})`;
-  tooltipText.innerText = `TNX${name}`;
+  tooltipText.innerText = `${name}`;
 
   colorBox.addEventListener("mousemove", (event) => {
     boxMouseMove(event, tooltip, colorBox);
@@ -77,7 +77,7 @@ function createColorBox(name, color) {
 function handleColorBoxClick(event, name, color) {
   const colorBox = event.currentTarget;
   const artColor = `rgb(${color})`;
-  const titleLabelColor = `TNX${name}`;
+  const titleLabelColor = `${name}`;
 
   searchColorInput.style.borderColor = artColor;
   fillCanvasColor = artColor;

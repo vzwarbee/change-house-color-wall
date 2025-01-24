@@ -136,7 +136,7 @@ section {
 
 .box-view_selected::after {
     position: absolute;
-    content: "TNX2001P";
+    content: "Nataxa_2001P";
     font-size: 13px;
     color: white;
     display: flex;
