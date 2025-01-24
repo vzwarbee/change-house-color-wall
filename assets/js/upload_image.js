@@ -181,7 +181,7 @@ const sonnha = {
       left: "0",
     },
     {
-      url: "/change-house-color-wall/assets/ng",
+      url: "/change-house-color-wall/assets/images/sonnha4/sonnha3.png",
       top: "0",
       left: "0",
     },
