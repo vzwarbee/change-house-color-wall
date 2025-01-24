@@ -9,3 +9,14 @@
         margin-top: 2rem;
     }
 }
+
+@media screen and (max-width: 1024px) {
+
+    .boxsFlat {
+        width: 100%;
+    }
+
+    .color-picker {
+        max-width: 400px;
+    }
+}

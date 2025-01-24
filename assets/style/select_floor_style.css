@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+select,
+textarea {
+    background-color: transparent;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Anton", sans-serif;
+    letter-spacing: 1.5px;
+}
+
+section {
+    padding: 30px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*====== floor-box =======*/
+.floor-box {
+    max-width: 600px;
+    height: 375px;
+    position: relative;
+}
+
+.floor-box .backgournd-floor {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../images/mau_ganh/anh_mau_nha.png) no-repeat center / cover;
+    border: 2px solid #ccc;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: move;
+}
+
+.image.editable {
+    outline: 2px dashed #007bff;
+}
+
+#controls {
+    margin-top: 20px;
+}
+
+#container {
+    width: 100%;
+    max-width: 800px;
+    max-height: 800px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border: 1px solid black;
+    position: relative;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.flat_container {
+    position: relative;
+    max-width: 800px;
+    max-height: 450px;
+    border: 1px solid #ccc;
+}
+
+.imgNoiThat {
+    height: 100%;
+}
+
+.canvasRender {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: -1;
+}
+
+.form {
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.formGroup {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+label.title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.buttonUpdate {
+    color: green;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.buttonUpdate:hover {
+    color: aquamarine;
+}
+
+.valueRender {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.boxsFlat {
+    width: 32%;
+    height: 400px;
+}
+
+.boxsFlat label {
+    font-size: 1.1rem;
+    font-weight: 500;
+
+}
+
+.boxsFlat .flatItem {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.flat-tooltip {
+    position: fixed;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2px 3px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background-image: url(/change-house-color-wall/assets/images/mẫu\ gạch.webp);
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    transition: opacity 0.25s ease, visibility 0.25s ease, width 0.25s ease, height 0.25s ease;
+}
+
+.flat-tooltip span {
+    display: block;
+    padding-top: 11px;
+    width: 100%;
+    height: 30%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.listFlat {
+    border: 1px dashed #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.sample-name {
+    margin-bottom: 20px;
+}
+
+/*    =======navbar   */
+li {
+    list-style-type: none;
+}
+
+.menu_navbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem 0 5rem 0;
+    padding: 30px;
+    background-image: url(/change-house-color-wall/assets/images/background_nav.jpg);
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+}
+
+.menu_navbar::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+nav.header-navbar {
+    width: 1024px;
+    height: 60px;
+    z-index: 3;
+}
+
+.header-navbar .menu_navs {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu_item {
+    color: white;
+    font-weight: 500;
+    font-size: 1.2rem;
+}

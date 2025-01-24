@@ -4020,5 +4020,45 @@
             "name": "3008C",
             "color": "68,67,72"
         }
+    ],
+    "flats": [
+        {
+            "name": "zxc",
+            "url": "maugach.webp"
+        },
+        {
+            "name": "zxc",
+            "url": "maugach1.webp"
+        },
+        {
+            "name": "zxc",
+            "url": "maugach2.webp"
+        },
+        {
+            "name": "zxc",
+            "url": "maugach3.webp"
+        },
+        {
+            "name": "zxc",
+            "url": "maugach4.webp"
+        },
+        {
+            "name": "zxc",
+            "url": "maugach5.webp"
+        }
+    ],
+    "interior_flat": [
+        {
+            "name": "Phòng khách",
+            "url": "anh-noithat.png"
+        },
+        {
+            "name": "Phòng ngủ",
+            "url": "anh_noithatphongngu.png"
+        },
+        {
+            "name": "Phòng bếp",
+            "url": "anh_noithatbep.png"
+        }
     ]
 }

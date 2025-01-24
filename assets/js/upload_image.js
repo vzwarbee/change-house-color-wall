@@ -1,8 +1,7 @@
 const box_colors = document.getElementById("box-colors");
-const colorInput = document.getElementById("colorValue");
 const canvas_container = document.querySelector(".canvas-container");
 const labelColor = document.getElementById("labelColor");
-
+let fillCanvasColor = "rgb(245,238,206)";
 let listData = {};
 async function fetchData() {
   try {
@@ -16,47 +15,91 @@ async function fetchData() {
   }
 }
 const boxView = document.querySelector(".box-view_selected");
+const boxColors = document.querySelector("#box-colors");
+const searchColorInput = document.querySelector("#searchColor");
 
 fetchData().then(() => {
-  if (!listData || !listData?.colors) {
+  if (!listData || !listData.colors) {
     console.error("Dữ liệu không hợp lệ hoặc bị thiếu!");
     return;
   }
-  function handleColorBoxClick(event) {
-    const colorBox = event.currentTarget;
-    const artColor = colorBox.getAttribute("data-color");
-    const titleLabelColor = "TNX" + colorBox.getAttribute("data-name");
 
-    labelColor.value = titleLabelColor.toUpperCase();
-    labelColor.style.borderColor = artColor;
-    colorInput.value = artColor;
-    boxView.style.backgroundColor = artColor;
+  renderColors(listData.colors);
 
-    boxView.addEventListener("click", () => {
-      location.hash = titleLabelColor;
-    });
-
-    document
-      .querySelectorAll(".color-box")
-      .forEach((box) => box.classList.remove("active"));
-
-    colorBox.classList.add("active");
-  }
-  listData.colors.forEach(({ name, color }) => {
-    const colorBox = document.createElement("div");
-    colorBox.className = "color-box";
-    colorBox.style.backgroundColor = `rgb(${color})`;
-    colorBox.setAttribute("data-color", `rgb(${color})`);
-    colorBox.setAttribute("data-name", name);
-    colorBox.id = "TNX" + name;
-
-    colorBox.addEventListener("click", handleColorBoxClick);
-
-    box_colors.appendChild(colorBox);
+  searchColorInput.addEventListener("input", (event) => {
+    const query = event.target.value.toLowerCase();
+    const filteredColors = listData.colors.filter((color) =>
+      color.name.toLowerCase().includes(query)
+    );
+    renderColors(filteredColors);
   });
 });
 
-function linkToColor() {}
+function renderColors(colors) {
+  boxColors.innerHTML = "";
+  colors.forEach(({ name, color }) => {
+    const colorBox = createColorBox(name, color);
+    boxColors.appendChild(colorBox);
+  });
+}
+
+function createColorBox(name, color) {
+  const colorBox = document.createElement("div");
+  const tooltip = document.createElement("div");
+  const tooltipText = document.createElement("p");
+
+  colorBox.className = "color-box";
+  colorBox.style.backgroundColor = `rgb(${color})`;
+  colorBox.setAttribute("data-color", `rgb(${color})`);
+  colorBox.setAttribute("data-name", name);
+  colorBox.id = `TNX${name}`;
+  tooltip.className = "tooltipColor";
+  tooltip.style.backgroundColor = `rgb(${color})`;
+  tooltipText.innerText = `TNX${name}`;
+
+  colorBox.addEventListener("mousemove", (event) => {
+    boxMouseMove(event, tooltip, colorBox);
+  });
+  colorBox.addEventListener("mouseleave", () => {
+    boxMouseLeave(tooltip);
+  });
+
+  tooltip.appendChild(tooltipText);
+  colorBox.appendChild(tooltip);
+
+  colorBox.addEventListener("click", (event) =>
+    handleColorBoxClick(event, name, color)
+  );
+
+  return colorBox;
+}
+
+function handleColorBoxClick(event, name, color) {
+  const colorBox = event.currentTarget;
+  const artColor = `rgb(${color})`;
+  const titleLabelColor = `TNX${name}`;
+
+  searchColorInput.style.borderColor = artColor;
+  fillCanvasColor = artColor;
+  boxView.style.backgroundColor = artColor;
+  updateBoxViewContent(titleLabelColor, ".box-view_selected::after");
+  updateBoxViewContent(
+    titleLabelColor,
+    ".color-box.active::after",
+    `rgb(${color})`
+  );
+  linkToColor(titleLabelColor);
+  document
+    .querySelectorAll(".color-box")
+    .forEach((box) => box.classList.remove("active"));
+  colorBox.classList.add("active");
+}
+
+function linkToColor(hash) {
+  boxView.addEventListener("click", () => {
+    location.hash = hash;
+  });
+}
 
 //data image
 const sonnha = {
@@ -138,7 +181,7 @@ const sonnha = {
       left: "0",
     },
     {
-      url: "/change-house-color-wall/assets/images/sonnha4/sonnha3.png",
+      url: "/change-house-color-wall/assets/ng",
       top: "0",
       left: "0",
     },
@@ -211,7 +254,7 @@ navbarActive.forEach((navItem, index) => {
 });
 
 function innerContentContainer(grouphouse) {
-  canvasContainer.innerHTML = "";
+  canvas_container.innerHTML = "";
   let data = Array.isArray(grouphouse) ? grouphouse : Object.values(grouphouse);
 
   if (!data || data.length === 0) {
@@ -219,7 +262,7 @@ function innerContentContainer(grouphouse) {
     return;
   }
 
-  canvasContainer.style.backgroundImage = `url(${data[0]?.url || ""})`;
+  canvas_container.style.backgroundImage = `url(${data[0]?.url || ""})`;
   const result = data.slice(1);
 
   result.forEach((item, index) => {
@@ -243,7 +286,7 @@ function innerContentContainer(grouphouse) {
     houseDiv.appendChild(canvas);
     houseDiv.appendChild(imgCanvas);
     houseDiv.addEventListener("click", function () {
-      applyColorToCanvas(canvas, imgCanvas, colorInput.value);
+      applyColorToCanvas(canvas, imgCanvas, fillCanvasColor);
     });
     canvas_container.appendChild(houseDiv);
   });
@@ -294,7 +337,7 @@ parentCanvas.forEach((itemDiv, index) => {
       const img = document.getElementById(`wall-image${index}`);
 
       if (canvas && img) {
-        applyColorToCanvas(canvas, img, colorInput.value);
+        applyColorToCanvas(canvas, img, fillCanvasColor);
       } else {
         console.error("Canvas hoặc Img không tồn tại với index:", index);
       }
@@ -310,3 +353,44 @@ function checkStorage() {
 }
 
 checkStorage();
+
+function updateBoxViewContent(content, classTo, rgbColor) {
+  const style = document.createElement("style");
+  style.textContent = `
+    ${classTo} {
+      content: "${content}";
+      ${rgbColor && `color: ${getTextColor(rgbColor)}`};
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function boxMouseMove(event, tooltip) {
+  tooltip.style.opacity = "1";
+  tooltip.style.visibility = "visible";
+
+  tooltip.style.width = "120px";
+  tooltip.style.height = "80px";
+
+  tooltip.style.left = event.clientX - 20 + "px";
+  tooltip.style.top = event.clientY - 20 + "px";
+}
+
+function boxMouseLeave(tooltip) {
+  tooltip.style.opacity = "0";
+  tooltip.style.visibility = "hidden";
+
+  tooltip.style.width = "50px";
+  tooltip.style.height = "60px";
+}
+
+function getTextColor(backgroundColor) {
+  const rgb = backgroundColor
+    .replace(/[^\d,]/g, "")
+    .split(",")
+    .map(Number);
+
+  const luminance = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+
+  return luminance > 128 ? "#000" : "#fff";
+}
