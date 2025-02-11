@@ -1,0 +1,82 @@
+
+@media screen and (max-width: 768px) {
+    .sidebar-container {
+        opacity: 1 !important;
+        visibility: visible !important;
+        left: 0 !important;
+        bottom: 100px;
+        height: auto;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+    }
+    .button-container {
+        gap: 10px;
+        flex-direction: row;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 10px;
+        
+    }
+    #application-canvas {
+        height: 40% !important;
+        left: 0;
+        transform: translateY(0);
+        top: 11%;
+        border-radius: 0px;
+    }
+
+    .button-container button {
+        width: auto;
+        padding: 0;
+        box-shadow: 2px 3px 5px rgba(0,0,0,0.4) ;
+    }
+    .button-container button canvas {
+        width: 80px;
+        height: 80px;
+    }
+
+    .button-container button h5 {
+        font-size: 0.7rem;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .button-container button div{
+        display: none;
+    }
+    .button-container button.active {
+        scale: 1.1;
+    }
+    .button-sidebar {
+        display: none;
+    }
+    .box-info_mobile{
+        position: absolute;
+        bottom: 300px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-around;
+        border: none;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 2px 3px 5px rgba(0,0,0,0.4);
+        width: 95%;
+        padding: 10px 0;
+    }
+    .box-info_mobile canvas{
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        border-radius: 5px;
+    }
+
+    .box-info_mobile .info-tiles{
+        text-align: left;
+    }
+    .modal-container {
+        width: 295px;
+        top: 30%;
+    }
+}

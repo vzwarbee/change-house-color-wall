@@ -1,0 +1,327 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f2f2f2;
+    font-family: Helvetica, arial, sans-serif;
+    position: relative;
+    width: 100%;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+li {
+    list-style-type: none;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#application-canvas {
+    display: block;
+}
+
+#application-canvas.fill-mode-NONE {
+    margin: auto;
+}
+
+#application-canvas.fill-mode-KEEP_ASPECT {
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+#application-canvas.fill-mode-FILL_WINDOW {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+canvas:focus {
+    outline: none;
+}
+
+.sidebar-container {
+    position: fixed;
+    height: 100vh;
+    width: 299px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    background-color: white;
+    transition: .3s;
+    left: 0;
+    bottom: 0;
+}
+.button-container {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 92%;
+}
+
+.button-container button {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    text-align: left;
+    gap: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.button-container button canvas {
+    width: 100px;
+    height: 100px;
+}
+
+.button-container button h5 {
+    font-size: 1.1rem;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+
+.button-container button div ul {
+    margin: 0;
+    padding: 0;
+    color: #939393
+}
+
+.button-sidebar {
+    position: absolute;
+    top: 10px;
+    left: 299px;
+    background-color: white;
+    border: 0px solid #ccc;
+    outline: none;
+    box-shadow: none;
+    z-index: 999;
+    padding: 7px 3px;
+    font-size: 18px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.button-open_modal{
+    position: fixed;
+    top: 30px;
+    right: 15px;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    outline: none;
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, .5);
+    font-size: 1.1rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: white;
+    padding: 20px;
+    width: 450px;
+    min-height: 100px;
+    transition: all 0.25s;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -55%);
+    background: rgba( 255, 255, 255, 0.8 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.modal-container.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+.modal-container .inner-modal .modal-list_rooms {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+.my-button {
+ padding: 15px 25px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #e8e8e8;
+ position: relative;
+ font-weight: 1000;
+ font-size: 17px;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms;
+ overflow: hidden;
+ cursor: pointer;
+}
+
+.my-button::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color: #212121;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+ transition: all 250ms
+}
+
+.my-button:hover {
+ color: #e8e8e8;
+}
+
+.my-button:hover::before {
+ width: 100%;
+}
+
+.box-info_mobile {
+    display: none;
+}
+
+
+
+.form-filter {
+  --input-text-color: #333;
+  --input-bg-color: #fff;
+  --focus-input-bg-color: transparent;
+  --text-color: #949faa;
+  --active-color: #39db19;
+  --width-of-input: 100%;
+  --inline-padding-of-input: 1.2em;
+  --gap: 0.9rem;
+}
+/* form style */
+.form-filter {
+  font-size: 0.9rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: var(--width-of-input);
+  position: relative;
+  isolation: isolate;
+}
+/* a fancy bg for showing background and border when focus. */
+.fancy-bg {
+  position: absolute;
+  width: 100%;
+  inset: 0;
+  background: var(--input-bg-color);
+  border-radius: 0;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+/* label styling */
+.form-filter label {
+  width: 100%;
+  padding: 0 0.8em;
+  height: 40px;
+  padding-inline: var(--inline-padding-of-input);
+  display: flex;
+  align-items: center;
+}
+
+.search,.reset-btn {
+  position: absolute;
+}
+/* styling search-icon */
+.search {
+  fill: var(--text-color);
+  left: var(--inline-padding-of-input);
+}
+/* svg -- size */
+.search i,.reset-btn i {
+  font-size: 17px;
+  display: block;
+}
+/* styling of close button */
+.reset-btn {
+  border: none;
+  right: var(--inline-padding-of-input);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  padding: 0.1em;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--active-color);
+  opacity: 0;
+  visibility: hidden;
+}
+/* styling of input */
+.input-filter {
+  color: var(--input-text-color);
+  width: 100%;
+  margin-inline: min(2em,calc(var(--inline-padding-of-input) + var(--gap)));
+  background: none;
+  border: none;
+}
+
+.input-filter:focus {
+  outline: none;
+}
+
+.input-filter::placeholder {
+  color: var(--text-color)
+}
+/* input background change in focus */
+.input-filter:focus ~ .fancy-bg {
+  border-bottom: 1px solid var(--active-color);
+  background: var(--focus-input-bg-color);
+}
+/* search icon color change in focus */
+.input-filter:focus ~ .search {
+  fill: var(--active-color);
+}
+/* showing close button when typing */
+.input-filter:valid ~ .reset-btn {
+  opacity: 1;
+  visibility: visible;
+}
+/* this is for the default background in input,when selecting autofill options -- you can remove this code if you do not want to override the browser style.  */
+input-filter:-webkit-autofill,
+input-filter:-webkit-autofill:hover,
+input-filter:-webkit-autofill:focus,
+input-filter:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+  -webkit-transition-delay: 9999s;
+}
+
+#material-form{
+display: none;
+}
