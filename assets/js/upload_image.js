@@ -231,8 +231,8 @@ const sonnha = {
     },
     {
       url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha4.webp",
-      left: "0",
-      top: "294px",
+      left: "294px",
+      top: "0",
     },
     {
       url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha5.webp",
@@ -253,8 +253,8 @@ const sonnha = {
     },
     {
       url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha2.webp",
-      left: "207px",
-      top: "180px",
+      left: "160px",
+      top: "59px",
     },
     {
       url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha3.webp",
