@@ -208,6 +208,70 @@ const sonnha = {
       left: "190px",
     },
   ],
+  sonnha6: [
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha.webp",
+      y: 0,
+      x: 0,
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha1.webp",
+      y: "0",
+      x: "0",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha2.webp",
+      x: "0",
+      y: "132px",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha3.webp",
+      x: "0",
+      y: "126px",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha4.webp",
+      x: "0",
+      y: "294px",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha6/1/sonnha5.webp",
+      x: "0",
+      y: "17px",
+    },
+  ],
+  sonnha7: [
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha.webp",
+      y: 0,
+      x: 0,
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha1.webp",
+      y: "0",
+      x: "0",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha2.webp",
+      x: "207px",
+      y: "180px",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha3.webp",
+      x: "405px",
+      y: "171px",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha5.webp",
+      x: "0",
+      y: "0",
+    },
+    {
+      url: "/change-house-color-wall/assets/images/sonnha7/1/sonnha4.webp",
+      x: "0",
+      y: "171px",
+    },
+  ],
 };
 
 // slide change image
